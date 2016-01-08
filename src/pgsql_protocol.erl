@@ -453,7 +453,7 @@ encode_cancel_message(ProcID, Secret) ->
 %%
 -spec encode_string_message(byte(), iodata()) -> binary().
 encode_string_message(Identifier, String) ->    
-    StringBin = iolist_to_binary(String),
+    StringBin = unicode:characters_to_binary(String),
     MessageLen = byte_size(StringBin) + 5,
     <<Identifier, MessageLen:32/integer, StringBin/binary, 0>>.
 
